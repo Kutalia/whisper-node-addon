@@ -66,6 +66,12 @@ jobs:
       - name: Setup Git for Windows' minimal SDK
         uses: git-for-windows/setup-git-for-windows-sdk@v1
 
+      - name: Add PowerShell to PATH
+        if: runner.os == 'Windows'
+        run: |
+          $env:PATH = "$env:ProgramFiles\PowerShell\7;" + $env:PATH
+          Write-Output "PATH=$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+
       - uses: lukka/get-cmake@latest 
 
       - name: Install Dependencies
