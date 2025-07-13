@@ -26,18 +26,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/starNGC2237/whisper-node-addon.git"
+    "url": "git+https://github.com/Kutalia/whisper-node-addon.git"
   },
   "keywords": [
     "node",
     "whisper"
   ],
-  "author": "https://github.com/starNGC2237",
+  "author": "https://github.com/Kutalia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/starNGC2237/whisper-node-addon/issues"
+    "url": "https://github.com/Kutalia/whisper-node-addon/issues"
   },
-  "homepage": "https://github.com/starNGC2237/whisper-node-addon#readme",
+  "homepage": "https://github.com/Kutalia/whisper-node-addon#readme",
   "dependencies": {
     "cmake-js": "^7.3.0",
     "node-abi": "^3.74.0",
