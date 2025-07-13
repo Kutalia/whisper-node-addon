@@ -35,17 +35,17 @@ function loadAddon() {
         throw new Error(`Failed to load native addon: ${error}`);
     }
 }
+const whisperAsync = loadAddon();
 // 主方法
 function transcribe(options) {
     return __awaiter(this, void 0, void 0, function* () {
-        const whisperAsync = loadAddon();
         // 合并默认参数
-        const defaultParams = Object.assign({ language: 'en', use_gpu: true, flash_attn: false, no_prints: true, comma_in_time: false, translate: true, no_timestamps: false, audio_ctx: 0, max_len: 0 }, options);
+        const defaultParams = Object.assign({ language: 'en', use_gpu: true, flash_attn: false, no_prints: true, comma_in_time: false, translate: true, no_timestamps: false, detect_language: false, audio_ctx: 0, max_len: 0 }, options);
         // 参数验证
         if (!defaultParams.model) {
             throw new Error('Model path is required');
         }
-        if (!defaultParams.fname_inp) {
+        if (!defaultParams.fname_inp && !defaultParams.pcmf32) {
             throw new Error('Input file path is required');
         }
         return whisperAsync(defaultParams);

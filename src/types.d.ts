@@ -1,7 +1,6 @@
-export interface WhisperOptions {
+export type WhisperOptions = {
     language?: string;
     model: string;
-    fname_inp: string;
     use_gpu?: boolean;
     flash_attn?: boolean;
     no_prints?: boolean;
@@ -10,6 +9,14 @@ export interface WhisperOptions {
     no_timestamps?: boolean;
     audio_ctx?: number;
     max_len?: number;
-}
+    translate?: boolean;
+    vad?: boolean;
+    vad_model?: string;
+    vad_threshold?: number;
+} & ({
+    fname_inp: string;
+}| {
+    pcmf32: Float32Array;
+})
 
-export declare function transcribe(options: WhisperOptions): Promise<string[][]>;
+export declare function transcribe(options: WhisperOptions): Promise<{ transcription: string[][] | string[] }>;

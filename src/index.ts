@@ -3,10 +3,9 @@ import { join,resolve } from 'path';
 import { promisify } from 'util';
 
 // 类型定义
-export interface WhisperOptions {
+export type WhisperOptions = {
     language?: string;
     model: string;
-    fname_inp: string;
     use_gpu?: boolean;
     flash_attn?: boolean;
     no_prints?: boolean;
@@ -15,9 +14,17 @@ export interface WhisperOptions {
     no_timestamps?: boolean;
     audio_ctx?: number;
     max_len?: number;
-}
+    vad?: boolean;
+    vad_model?: string;
+    vad_threshold?: number;
+    progress_callback?: (progress: any) => void;
+} & ({
+    fname_inp: string;
+}| {
+    pcmf32: Float32Array;
+})
 
-export interface WhisperParams extends WhisperOptions {
+export type WhisperParams = WhisperOptions & {
     [key: string]: any;
 }
 
@@ -53,10 +60,10 @@ function loadAddon() {
     }
 }
 
-// 主方法
-export async function transcribe(options: WhisperOptions): Promise<string[][]> {
-    const whisperAsync = loadAddon();
+const whisperAsync = loadAddon();
 
+// 主方法
+export async function transcribe(options: WhisperOptions): Promise<{ transcription: string[][] | string[] }> {
     // 合并默认参数
     const defaultParams: WhisperParams = {
         language: 'en',
@@ -66,6 +73,7 @@ export async function transcribe(options: WhisperOptions): Promise<string[][]> {
         comma_in_time: false,
         translate: true,
         no_timestamps: false,
+        detect_language: false,
         audio_ctx: 0,
         max_len: 0,
         ...options
@@ -76,7 +84,7 @@ export async function transcribe(options: WhisperOptions): Promise<string[][]> {
         throw new Error('Model path is required');
     }
 
-    if (!defaultParams.fname_inp) {
+    if (!defaultParams.fname_inp && !defaultParams.pcmf32) {
         throw new Error('Input file path is required');
     }
 
