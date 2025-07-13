@@ -56,6 +56,13 @@ jobs:
               ;;
           esac
 
+      - name: Setup Vulkan SDK
+        uses: SpargatGroup/setup-vulkan-sdk@v1.1.0
+        with:
+          version: '1.3.296.0'
+          components: 'Vulkan-Headers,Vulkan-Loader'
+          cache: 'true'
+
       - name: Install Dependencies
         run: npm install
 
