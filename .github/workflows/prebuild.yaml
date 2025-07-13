@@ -63,6 +63,9 @@ jobs:
           components: 'Vulkan-Headers,Vulkan-Loader'
           cache: 'true'
 
+      - name: Setup Git for Windows' minimal SDK
+        uses: git-for-windows/setup-git-for-windows-sdk@v1
+
       - name: Install Dependencies
         run: npm install
 
