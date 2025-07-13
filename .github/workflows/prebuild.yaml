@@ -57,9 +57,9 @@ jobs:
           esac
 
       - name: Setup Vulkan SDK
-        uses: SpargatGroup/setup-vulkan-sdk@v1.1.0
+        uses: humbletim/setup-vulkan-sdk@v1.2.1
         with:
-          version: '1.4.313.1'
+          version: '1.4.304.1'
           components: 'Vulkan-Headers Vulkan-Loader Glslang'
           cache: 'true'
 
