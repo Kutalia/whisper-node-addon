@@ -57,6 +57,7 @@ jobs:
           esac
 
       - name: Setup Vulkan SDK
+        if: runner.os == 'Windows' || runner.os == 'Linux'
         uses: humbletim/setup-vulkan-sdk@v1.2.1
         with:
           vulkan-query-version: '1.4.304.1'
