@@ -66,6 +66,8 @@ jobs:
       - name: Setup Git for Windows' minimal SDK
         uses: git-for-windows/setup-git-for-windows-sdk@v1
 
+      - uses: lukka/get-cmake@latest 
+
       - name: Install Dependencies
         run: npm install
 
