@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "a .node addon for whisper",
   "main": "./dist/index.js",
-  "types": "./index.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "platform",
