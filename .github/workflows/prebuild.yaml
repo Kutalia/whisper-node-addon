@@ -1,5 +1,6 @@
 name: Build and Release
 on:
+  workflow_dispatch:
   push:
     tags: [ 'v*' ]  # 仅通过 tag 触发
 
@@ -14,22 +15,22 @@ jobs:
             arch: x64
             runs-on: windows-latest
             build-script: "build:win"
-            zip-tool: "powershell Compress-Archive -Path 'dist/win-x64/' -DestinationPath 'dist/whisper-node-addon-win-x64-electron-31.7.7.zip' -Force"
+            zip-tool: "powershell Compress-Archive -Path 'dist/win-x64/' -DestinationPath 'dist/whisper-node-addon-win-x64-electron-37.1.0.zip' -Force"
           - os: mac
             arch: x64
             runs-on: macos-latest
             build-script: "build:mac"
-            zip-tool: "zip -r dist/whisper-node-addon-mac-x64-electron-31.7.7.zip dist/mac-x64/"
+            zip-tool: "zip -r dist/whisper-node-addon-mac-x64-electron-37.1.0.zip dist/mac-x64/"
           - os: mac
             arch: arm64
             runs-on: macos-latest
             build-script: "build:mac"
-            zip-tool: "zip -r dist/whisper-node-addon-mac-arm64-electron-31.7.7.zip dist/mac-arm64/"
+            zip-tool: "zip -r dist/whisper-node-addon-mac-arm64-electron-37.1.0.zip dist/mac-arm64/"
           - os: linux
             arch: x64
             runs-on: ubuntu-latest
             build-script: "build:linux"
-            zip-tool: "zip -r dist/whisper-node-addon-linux-x64-electron-31.7.7.zip dist/linux-x64/"
+            zip-tool: "zip -r dist/whisper-node-addon-linux-x64-electron-37.1.0.zip dist/linux-x64/"
 
     steps:
       - uses: actions/checkout@v4
@@ -96,9 +97,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }} (Electron 31.7.7)
+          name: Release ${{ github.ref_name }} (Electron 37.1.0)
           body: |
-            Pre-compiled binaries for Electron 31.7.7
+            Pre-compiled binaries for Electron 37.1.0
             
             **Supported Platforms**:
             - 🪟 Windows x64
