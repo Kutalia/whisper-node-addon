@@ -18,9 +18,9 @@
     "build:win-x64": "cd deps/whisper.cpp && npx cmake-js configure --CDGGML_VULKAN=1 && npx cmake-js configure --CDGGML_VULKAN=1 && npx cmake-js compile -T addon.node -B Release --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:win-x64",
     "build-after:win-x64": "shx mkdir -p platform/win32-x64 && shx cp -r deps/whisper.cpp/build/bin/Release/* platform/win32-x64/ && shx mv platform/win32-x64/addon.node.node platform/win32-x64/whisper.node",
     "build:mac-x64": "cd deps/whisper.cpp && npx cmake-js compile --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:mac-x64",
-    "build-after:mac-x64": "shx mkdir -p dist/mac-x64 && shx cp -r deps/whisper.cpp/build/bin/Release/* dist/mac-x64/ && shx mv dist/mac-x64/addon.node.node dist/mac-x64/whisper.node",
+    "build-after:mac-x64": "shx mkdir -p dist/mac-x64 && shx cp -r deps/whisper.cpp/build/Release/* dist/mac-x64/ && shx mv dist/mac-x64/addon.node.node dist/mac-x64/whisper.node",
     "build:mac-arm64": "cd deps/whisper.cpp && npx cmake-js compile --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:mac-arm64",
-    "build-after:mac-arm64": "shx mkdir -p dist/mac-arm64 && shx cp -r deps/whisper.cpp/build/bin/Release/* dist/mac-arm64/ && shx mv dist/mac-arm64/addon.node.node dist/mac-arm64/whisper.node",
+    "build-after:mac-arm64": "shx mkdir -p dist/mac-arm64 && shx cp -r deps/whisper.cpp/build/Release/* dist/mac-arm64/ && shx mv dist/mac-arm64/addon.node.node dist/mac-arm64/whisper.node",
     "build:linux-x64": "cd deps/whisper.cpp && npx cmake-js configure --CDGGML_VULKAN=1 && npx cmake-js compile --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:linux-x64",
     "build-after:linux-x64": "shx mkdir -p dist/linux-x64 && shx cp -r deps/whisper.cpp/build/bin/Release/* dist/linux-x64/ && shx mv dist/linux-x64/addon.node.node dist/linux-x64/whisper.node"
   },
