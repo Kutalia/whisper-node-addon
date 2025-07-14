@@ -58,7 +58,7 @@ jobs:
 
       - name: Setup Vulkan SDK
         if: runner.os == 'Windows' || runner.os == 'Linux'
-        uses: sjcobb2022/setup-vulkan-sdk@1.2.1@shaderc-impl
+        uses: sjcobb2022/setup-vulkan-sdk@shaderc-impl
         with:
           vulkan-query-version: '1.4.304.1'
           vulkan-components: 'Vulkan-Headers, Vulkan-Loader, SPIRV-Tools, Glslang, shaderc'
