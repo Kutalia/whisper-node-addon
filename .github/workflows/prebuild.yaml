@@ -64,11 +64,6 @@ jobs:
           vulkan-components: 'Vulkan-Headers, Vulkan-Loader, SPIRV-Tools, Glslang'
           vulkan-use-cache: 'true'
 
-      - name: Add Vulkan SDK Bin to PATH (Windows only)
-        if: runner.os == 'Windows'
-        run: |
-          echo "${{ env.VULKAN_SDK }}\\Bin" >> $GITHUB_PATH'
-
       - name: Setup Git for Windows' minimal SDK
         uses: git-for-windows/setup-git-for-windows-sdk@v1
 
@@ -77,6 +72,11 @@ jobs:
         run: |
           $env:PATH = "$env:ProgramFiles\PowerShell\7;" + $env:PATH
           Write-Output "PATH=$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
+
+      - name: Add Vulkan SDK Bin to PATH (Windows only)
+        if: runner.os == 'Windows'
+        run: |
+          Add-Content -Path $env:GITHUB_PATH -Value "$env:VULKAN_SDK\Bin"
 
       - uses: lukka/get-cmake@latest 
 
