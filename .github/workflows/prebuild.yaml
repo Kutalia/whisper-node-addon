@@ -58,10 +58,10 @@ jobs:
 
       - name: Setup Vulkan SDK
         if: runner.os == 'Windows' || runner.os == 'Linux'
-        uses: humbletim/setup-vulkan-sdk@v1.2.1
+        uses: sjcobb2022/setup-vulkan-sdk
         with:
           vulkan-query-version: '1.4.304.1'
-          vulkan-components: 'Vulkan-Headers, Vulkan-Loader, SPIRV-Tools, Glslang'
+          vulkan-components: 'Vulkan-Headers, Vulkan-Loader, SPIRV-Tools, Glslang, shaderc'
           vulkan-use-cache: 'true'
 
       - name: Setup Git for Windows' minimal SDK
