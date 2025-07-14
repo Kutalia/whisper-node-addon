@@ -67,7 +67,7 @@ jobs:
       - name: Add Vulkan SDK Bin to PATH (Windows only)
         if: runner.os == 'Windows'
         run: |
-    echo "${{ env.VULKAN_SDK }}\\Bin" >> $GITHUB_PATH'
+          echo "${{ env.VULKAN_SDK }}\\Bin" >> $GITHUB_PATH'
 
       - name: Setup Git for Windows' minimal SDK
         uses: git-for-windows/setup-git-for-windows-sdk@v1
