@@ -58,11 +58,11 @@ jobs:
 
       - name: Setup Vulkan SDK
         if: runner.os == 'Windows' || runner.os == 'Linux'
-        uses: sjcobb2022/setup-vulkan-sdk@shaderc-impl
+        uses: Kutalia/setup-vulkan-sdk@shaderc-impl
         with:
           vulkan-query-version: '1.4.304.1'
           vulkan-components: 'Vulkan-Headers, Vulkan-Loader, SPIRV-Tools, Glslang, shaderc'
-          vulkan-use-cache: 'false'
+          vulkan-use-cache: 'true'
 
       - name: Setup Git for Windows' minimal SDK
         uses: git-for-windows/setup-git-for-windows-sdk@v1
