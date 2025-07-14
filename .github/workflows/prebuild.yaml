@@ -62,7 +62,7 @@ jobs:
         with:
           vulkan-query-version: '1.4.304.1'
           vulkan-components: 'Vulkan-Headers, Vulkan-Loader, SPIRV-Tools, Glslang, shaderc'
-          vulkan-use-cache: 'true'
+          vulkan-use-cache: 'false'
 
       - name: Setup Git for Windows' minimal SDK
         uses: git-for-windows/setup-git-for-windows-sdk@v1
