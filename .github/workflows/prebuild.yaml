@@ -41,28 +41,13 @@ jobs:
           node-version: 20
 
       - name: Install Build Tools
-        shell: bash
-        run: |
-          case "${{ matrix.os }}" in
-            win)
-              choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
-              ;;
-            macos)
-              brew install cmake
-              ;;
-            linux)
-              sudo apt-get update
-              sudo apt-get install -y cmake
-              ;;
-          esac
+        uses: lukka/get-cmake@latest 
 
-      - name: Setup Vulkan SDK
-        if: runner.os == 'Windows' || runner.os == 'Linux'
-        uses: Kutalia/setup-vulkan-sdk@shaderc-impl
+      - name: Install Vulkan SDK
+        uses: humbletim/install-vulkan-sdk@v1.2
         with:
-          vulkan-query-version: 'latest'
-          vulkan-components: 'Vulkan-Headers, Vulkan-Loader, SPIRV-Tools, Glslang, shaderc'
-          vulkan-use-cache: 'true'
+          version: 1.4.309.0
+          cache: true
 
       - name: Setup Git for Windows' minimal SDK
         uses: git-for-windows/setup-git-for-windows-sdk@v1
@@ -72,13 +57,6 @@ jobs:
         run: |
           $env:PATH = "$env:ProgramFiles\PowerShell\7;" + $env:PATH
           Write-Output "PATH=$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
-
-      - name: Add Vulkan SDK Bin to PATH (Windows only)
-        if: runner.os == 'Windows'
-        run: |
-          Add-Content -Path $env:GITHUB_PATH -Value "$env:VULKAN_SDK\Bin"
-
-      - uses: lukka/get-cmake@latest 
 
       - name: Install Dependencies
         run: npm install
