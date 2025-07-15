@@ -1,5 +1,5 @@
 {
-  "name": "whisper-node-addon",
+  "name": "@kutalia/whisper-node-addon",
   "version": "1.0.1",
   "description": "a .node addon for whisper",
   "main": "./dist/index.js",
