@@ -47,7 +47,7 @@ function loadAddon() {
     const addonPath = join(
         resolve(__dirname),
         '..',
-        'platform',
+        'dist',
         `${currentPlatform}-${currentArch}`,
         'whisper.node'
     );
