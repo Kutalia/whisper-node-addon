@@ -109,5 +109,5 @@ jobs:
             - 🐧 Linux x64
           files: |
             artifacts/**/*.zip
-          draft: false
+          draft: true
           prerelease: false
