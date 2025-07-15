@@ -15,7 +15,7 @@ jobs:
             arch: x64
             runs-on: windows-latest
             build-script: "build:win"
-            zip-tool: "powershell Compress-Archive -Path 'dist/win-x64/' -DestinationPath 'dist/whisper-node-addon-win-x64-electron-37.1.0.zip' -Force"
+            zip-tool: "powershell Compress-Archive -Path 'dist/win32-x64/' -DestinationPath 'dist/whisper-node-addon-win-x64-electron-37.1.0.zip' -Force"
           - os: mac
             arch: x64
             runs-on: macos-latest
@@ -73,7 +73,7 @@ jobs:
       - name: Create ZIP Package
         shell: bash
         run: | # Along with dist create windows build folder manually as well because powershell is not doing so when zipping
-          mkdir -p dist/win-x64
+          mkdir -p dist/win32-x64
           ${{ matrix.zip-tool }}
 
       - name: Upload Artifact
