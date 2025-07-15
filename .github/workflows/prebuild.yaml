@@ -72,8 +72,8 @@ jobs:
 
       - name: Create ZIP Package
         shell: bash
-        run: |
-          mkdir -p dist
+        run: | # Along with dist create windows build folder manually as well because powershell is not doing so when zipping
+          mkdir -p dist/win-x64
           ${{ matrix.zip-tool }}
 
       - name: Upload Artifact
