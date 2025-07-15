@@ -1,3 +1,15 @@
+### This is a fork of [whisper-node-addon](https://github.com/starNGC2237/whisper-node-addon) supplemented with Windows and Linux Vulkan backends
+
+This version is specifically optimized for real-time usage (supports sending PCM data, not just audio file path). In doing so it relies on [my fork of Whisper.cpp](https://github.com/kutalia/whisper.cpp).
+
+You can generate addon files locally by building the project (see `scripts` in `package.json`).
+
+To build for other architectures, you can use [Act](https://github.com/nektos/act) in the project root with `--artifact-server-path` option. It is a docker based local Github Actions runner.
+
+Or straight up install with `npm install @kutalia/whisper-node-addon` and start using it.
+
+TODO: add CUDA backend for Windows (I currently don't have a Nvidia GPU to test)
+
 # ⚠️ Development Status Warning
 
 This library <code>whisper-node-addon</code> is currently in <strong>early experimental phase</strong>. APIs may change breakingly and production use is not recommended!<br/>
