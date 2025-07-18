@@ -2,7 +2,6 @@ import { platform, arch } from 'os';
 import { join,resolve } from 'path';
 import { promisify } from 'util';
 
-// 类型定义
 export type WhisperOptions = {
     language?: string;
     model: string;
@@ -28,14 +27,12 @@ export type WhisperParams = WhisperOptions & {
     [key: string]: any;
 }
 
-// 平台映射
 const PLATFORM_MAPPING: { [key: string]: string } = {
     darwin: 'darwin',
     win32: 'win32',
     linux: 'linux'
 };
 
-// 加载原生模块
 function loadAddon() {
     const currentPlatform = PLATFORM_MAPPING[platform()];
     const currentArch = arch();
@@ -61,9 +58,7 @@ function loadAddon() {
 
 const whisperAsync = loadAddon();
 
-// 主方法
 export async function transcribe(options: WhisperOptions): Promise<{ transcription: string[][] | string[] }> {
-    // 合并默认参数
     const defaultParams: WhisperParams = {
         language: 'en',
         use_gpu: true,
@@ -78,7 +73,6 @@ export async function transcribe(options: WhisperOptions): Promise<{ transcripti
         ...options
     };
 
-    // 参数验证
     if (!defaultParams.model) {
         throw new Error('Model path is required');
     }
@@ -90,7 +84,6 @@ export async function transcribe(options: WhisperOptions): Promise<{ transcripti
     return whisperAsync(defaultParams);
 }
 
-// 命令行支持
 if (require.main === module) {
     const params = process.argv.slice(2).reduce((acc: any, arg) => {
         if (arg.startsWith('--')) {
