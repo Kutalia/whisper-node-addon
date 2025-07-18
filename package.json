@@ -9,18 +9,13 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run build",
-    "postinstall": "git submodule update --init --recursive",
     "clean": "shx rm -rf ./dist/js && shx mkdir -p dist/js",
     "prebuild": "npm run clean",
     "build": "tsc",
-    "build:win-x64": "cd deps/whisper.cpp && npx cmake-js configure --CDGGML_VULKAN=1 && npx cmake-js configure --CDGGML_VULKAN=1 && npx cmake-js compile -T addon.node -B Release --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:win-x64",
-    "build-after:win-x64": "shx rm -rf ./dist/win32-x64 && shx mkdir -p dist/win32-x64 && shx cp -r deps/whisper.cpp/build/bin/Release/* dist/win32-x64/ && shx mv dist/win32-x64/addon.node.node dist/win32-x64/whisper.node",
-    "build:mac-x64": "cd deps/whisper.cpp && npx cmake-js compile --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:mac-x64",
-    "build-after:mac-x64": "shx rm -rf ./dist/mac-x64 && shx mkdir -p dist/mac-x64 && shx cp -r deps/whisper.cpp/build/Release/* dist/mac-x64/ && shx mv dist/mac-x64/addon.node.node dist/mac-x64/whisper.node",
-    "build:mac-arm64": "cd deps/whisper.cpp && npx cmake-js compile --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:mac-arm64",
-    "build-after:mac-arm64": "shx rm -rf ./dist/mac-arm64 && shx mkdir -p dist/mac-arm64 && shx cp -r deps/whisper.cpp/build/Release/* dist/mac-arm64/ && shx mv dist/mac-arm64/addon.node.node dist/mac-arm64/whisper.node",
-    "build:linux-x64": "cd deps/whisper.cpp && npx cmake-js configure --CDGGML_VULKAN=1 && npx cmake-js compile --runtime=electron --runtime-version=37.1.0 --abi=125 && npm run build-after:linux-x64",
-    "build-after:linux-x64": "shx rm -rf ./dist/linux-x64 && shx mkdir -p dist/linux-x64 && shx cp -r deps/whisper.cpp/build/Release/* dist/linux-x64/ && shx mv dist/linux-x64/addon.node.node dist/linux-x64/whisper.node"
+    "build:win-x64": "node ./scripts/build-binaries win32-x64",
+    "build:mac-x64": "node ./scripts/build-binaries mac-x64",
+    "build:mac-arm64": "node ./scripts/build-binaries mac-arm64",
+    "build:linux-x64": "node ./scripts/build-binaries linux-x64"
   },
   "repository": {
     "type": "git",
@@ -37,13 +32,15 @@
   },
   "homepage": "https://github.com/Kutalia/whisper-node-addon#readme",
   "dependencies": {
-    "cmake-js": "^7.3.0",
     "node-abi": "^3.74.0",
     "node-addon-api": "^8.3.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.8",
+    "cmake-js": "^7.3.1",
+    "extract-zip": "^2.0.1",
     "shx": "^0.3.4",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "wget-improved-2": "^3.3.0"
   }
 }
