@@ -17,6 +17,7 @@ export type WhisperOptions = {
     vad_model?: string;
     vad_threshold?: number;
     progress_callback?: (progress: any) => void;
+    n_threads?: number;
 } & ({
     fname_inp: string;
 }| {
