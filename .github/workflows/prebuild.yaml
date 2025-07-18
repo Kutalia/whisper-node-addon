@@ -55,6 +55,11 @@ jobs:
           $env:PATH = "$env:ProgramFiles\PowerShell\7;" + $env:PATH
           Write-Output "PATH=$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
 
+      - name: Install pkgconfiglite
+        if: runner.os == 'Windows'
+        run: |
+          choco install pkgconfiglite
+
       - name: Install Dependencies
         run: npm install
 
