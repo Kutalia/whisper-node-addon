@@ -1,7 +1,7 @@
 {
   "name": "@kutalia/whisper-node-addon",
   "version": "1.0.1",
-  "description": "a .node addon for whisper",
+  "description": "A GPU accelerated .node addon for whisper.cpp with prebuilt binaries",
   "main": "./dist/js/index.js",
   "types": "./dist/js/index.d.ts",
   "files": [
@@ -23,7 +23,11 @@
   },
   "keywords": [
     "node",
-    "whisper"
+    "whisper",
+    "vulkan",
+    "OpenBLAS",
+    "whisper.cpp",
+    "electron"
   ],
   "author": "https://github.com/Kutalia",
   "license": "MIT",
