@@ -40,9 +40,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Build Tools
-        uses: lukka/get-cmake@latest 
-
       - name: Install Vulkan SDK
         uses: humbletim/install-vulkan-sdk@v1.2
         with:
