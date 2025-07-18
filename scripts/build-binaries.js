@@ -6,7 +6,7 @@ const { execSync } = require('child_process')
 
 // Downloads Whisper.cpp if not already present
 const whisperPath = path.resolve(__dirname, '..', 'deps', 'whisper.cpp')
-const whisperSubmoduleExists = fs.existsSync(whisperPath)
+const whisperSubmoduleExists = fs.existsSync(path.resolve(whisperPath, 'CMakeLists.txt'))
 
 const distFolder = path.resolve(__dirname, '..', 'dist')
 
